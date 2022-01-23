@@ -4,7 +4,7 @@ static const Block blocks[] = {
 //	{"Mem:", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	30,		0},
 	{" ", "acpi | awk  '{print $3 , $4}' | sed 's/,//g'",	30,		0},
 
-	{"Volume ", " awk -F\"[][]\" '/dB/ { print $2 }' <(amixer sget Master)", 	0,		10},
+	{"Volume ", "awk -F\"[][]\" '/Left:/ { print $2 }' <(amixer sget Master)", 	0,		10},
 	{"Brightness ", "xrandr --verbose | awk '/Brightness/ {print $2;exit}'", 	0,		20},
 	{"", "date '+%I:%M%p (%a) %b %d '",					60,		0},
 };
