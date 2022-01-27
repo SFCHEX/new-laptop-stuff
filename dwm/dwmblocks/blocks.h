@@ -5,7 +5,7 @@ static const Block blocks[] = {
 	{" ", "acpi | awk  '{print $3 , $4}' | sed 's/,//g'",	30,		0},
 
 	{"Volume ", "awk -F\"[][]\" '/Left:/ { print $2 }' <(amixer sget Master)", 	0,		10},
-	{"Brightness ", "xrandr --verbose | awk '/Brightness/ {print $2;exit}'", 	0,		20},
+	{"Brightness ", "brightnessctl -m -d nvidia_0 | awk -F, '{print substr($4, 0,length($4)-1)\"%\"}'", 	0,		20},
 	{"", "date '+%I:%M%p (%a) %b %d '",					60,		0},
 };
 

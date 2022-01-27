@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "jetbrainsmono:pixelsize=14.5:antialias=true:autohint=true";
-static char *font2[] = { "ttf-symbola:pixelsize=15:antialias=true:autohint=true" };
+static char *font2[] = { "ttf-symbola:pixelsize=14.5:antialias=true:autohint=true" };
 static int borderpx = 7;
 
 /*
