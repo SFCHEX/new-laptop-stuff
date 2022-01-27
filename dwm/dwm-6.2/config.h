@@ -99,8 +99,8 @@ static const char *volumeupcmd[]  = { "/bin/sh", "-c","amixer set Master 8%+ ; p
 static const char *volumedowncmd[]  = { "/bin/sh", "-c","amixer set Master 8%- ; pkill -RTMIN+10 dwmblocks",  NULL };
 static const char *volumetogglecmd[]  = {"/bin/sh", "-c", "amixer set Master toggle; pkill -RTMIN+10 dwmblocks", NULL };
 
-static const char *brightnessdowncmd[]  = { "/bin/sh", "-c","brightness.sh - DP-2 0.05; pkill -RTMIN+20 dwmblocks",  NULL };
-static const char *brightnessupcmd[]  = { "/bin/sh", "-c","brightness.sh + DP-2 0.05; pkill -RTMIN+20 dwmblocks",  NULL };
+static const char *brightnessdowncmd[]  = { "/bin/sh", "-c","brightnessctl --min-value=5 s 5%-; pkill -RTMIN+20 dwmblocks",  NULL };
+static const char *brightnessupcmd[]  = { "/bin/sh", "-c","brightnessctl s +5%; pkill -RTMIN+20 dwmblocks",  NULL };
 static const char *screenshotfullcmd[]  = { "/bin/sh", "-c","flameshot full -p ~/media/Pictures/screenshots",  NULL };
 static const char *screenshotpartcmd[]  = { "/bin/sh", "-c","flameshot gui",  NULL };
 
