@@ -7,7 +7,7 @@ static const unsigned int gappih    = 5;       /* horiz inner gap between window
 static const unsigned int gappiv    = 5;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 5;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */ 
@@ -20,10 +20,11 @@ static const char col_gray3[]       = "#D8DEE9";
 static const char col_gray4[]       = "#323845";
 static const char col_cyan[]        = "#434c5e";
 static const char col_green[]        = "#A3BE8C";
+static const char col_green2[]        = "#C8D4CD";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray4},
-	[SchemeSel]  = { col_gray3, col_cyan,  col_green  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_green},
+	[SchemeSel]  = { col_gray3, col_cyan,  col_green },
 
 };
 
@@ -42,8 +43,8 @@ static const Rule rules[] = {
         /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
         { "Pavucontrol",  NULL,   NULL,           0,         1,          0,           0         -1 },
         { "Firefox",      NULL,   NULL,           0,         0,          0,          -1,        -1 },
-        { "Brave",        NULL,   NULL,             0,         0,          0,          -1,        -1 },
-        { "Xdm",          NULL,   NULL,               0,         1,          0,          -1,        -1 },
+        { "Brave",        NULL,   NULL,           0,         0,          0,          -1,        -1 },
+        { "Xdm",          NULL,   NULL,           0,         1,          0,          -1,        -1 },
         { "St",           NULL,   NULL,           0,         0,          1,           0,        -1 },
         { NULL,           NULL,   "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 
@@ -90,7 +91,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray3, "-h" ,"20", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35","-C","#323845@257", NULL };
+//static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35","-C","#323845@257", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *browser1cmd[]  = { "firefox", NULL };
@@ -121,7 +123,7 @@ static Key keys[] = {
 /*	{ Mod1Mask,                     XK_a,      spawn,          {.v = switchkeybar} },
 	{ Mod1Mask,                     XK_Return, spawn,          {.v = switchkeyben} }, */
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
+//	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = volumetogglecmd } },
 	{ MODKEY|ControlMask,           XK_u,      spawn,          {.v = volumeupcmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = browsercmd } },
