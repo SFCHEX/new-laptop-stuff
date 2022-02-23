@@ -27,11 +27,14 @@ autoload -U compinit && compinit
 zmodload -i zsh/complist
 source .zsh/zsh-syntax-highlighting.zsh
 zstyle ':completion:*' menu select
-
-
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
+export SAVEHIST=10000000000
+setopt INC_APPEND_HISTORY
+export HISTTIMEFORMAT="[%F %T] "
+
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T] "
 setopt EXTENDED_HISTORY
@@ -43,4 +46,3 @@ bindkey '^X^X' history-beginning-search-menu
 source .zsh/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-neofetch
