@@ -46,3 +46,4 @@ bindkey '^X^X' history-beginning-search-menu
 source .zsh/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+neofetch
