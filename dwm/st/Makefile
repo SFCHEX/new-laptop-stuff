@@ -29,7 +29,7 @@ st: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
 
 clean:
-	rm -f sk $(OBJ) st-$(VERSION).tar.gz *.rej *.orig *.o
+	rm -f st $(OBJ) st-$(VERSION).tar.gz *.rej *.orig *.o
 
 dist: clean
 	mkdir -p st-$(VERSION)
@@ -40,8 +40,6 @@ dist: clean
 	rm -rf st-$(VERSION)
 
 install: st
-	git submodule init
-	git submodule update
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f st $(DESTDIR)$(PREFIX)/bin
 	cp -f st-copyout $(DESTDIR)$(PREFIX)/bin

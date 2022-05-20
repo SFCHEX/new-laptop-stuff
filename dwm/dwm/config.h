@@ -35,6 +35,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Pavucontrol",  NULL,       NULL,       0,       1,           -1 },
+	{ "Sxiv",  NULL,       NULL,       0,       1,           -1 },
+	{ "Lxappearance",  NULL,       NULL,       0,       1,           -1 },
 };
 
 /* window swallowing */
@@ -96,7 +98,7 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
-static const char *browser1cmd[]  = { "firefox", NULL };
+static const char *browser1cmd[]  = { "chromium", NULL };
 static const char *clipmenucmd[]  = { "clipmenu", NULL };
 
 static const char *volumeupcmd[]  = { "/bin/sh", "-c","amixer set Master 5%+ ; pkill -RTMIN+10 dwmblocks",  NULL };
