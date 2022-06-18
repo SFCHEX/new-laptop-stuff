@@ -1,0 +1,21 @@
+Config { font = "xft:Jetbrains Mono:pixelsize=13:antialias=true:hinting=true"
+       , borderColor = "#323845"
+       , border = TopB
+       , bgColor = "#323845"
+       , fgColor = "#d8dee9"
+       , alpha = 255
+       , position = TopW L 100
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                    Run Cpu ["-L","3","-H","50"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Volume "default" "Master" [] 10
+		    , Run Date "%I:%M%p (%a) %D " "date" 10
+                    , Run Brightness ["-t", ""] 60
+		    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ [ %brightness% ][ %volume% ][ %cpu% ][ %memory% ][ %date% ] "  }
