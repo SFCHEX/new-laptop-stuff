@@ -25,6 +25,19 @@ static const char *colors[][3]      = {
 
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "130x38", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41"  , NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spranger",    spcmd2},
+};
+
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -34,9 +47,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Pavucontrol",  NULL,       NULL,       0,       1,           -1 },
-	{ "Sxiv",  NULL,       NULL,       0,       1,           -1 },
-	{ "Lxappearance",  NULL,       NULL,       0,       1,           -1 },
+	{ "Pavucontrol",   NULL,        NULL,       0,          1,           -1 },
+	{ "Sxiv",          NULL,        NULL,       0,          1,           -1 },
+	{ "Lxappearance",  NULL,        NULL,       0,          1,           -1 },
+	{ NULL,            "spterm",    NULL,       SPTAG(0),   1,           -1 },
+	{ NULL,            "spfm",      NULL,       SPTAG(1),   1,           -1 },
+	{ NULL,            "keepassxc", NULL,       SPTAG(2),   0,           -1 },
+
 };
 
 /* window swallowing */
@@ -91,9 +108,6 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray3,  NULL };
-static const char scratchpadname[] = "scratchpad";
-//static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35","-C","#323845@257", NULL };
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "130x35", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
 static const char *browser1cmd[]  = { "chromium", NULL };
@@ -117,14 +131,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_k,      spawn,          {.v = brightnessdowncmd} },
 	{ MODKEY|ControlMask,           XK_i,      spawn,          {.v = brightnessupcmd} },
+	{ MODKEY,            		XK_a,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            		XK_s,	   togglescratch,  {.ui = 1 } },
+
 	{ MODKEY,                       XK_x,      spawn,          {.v = browser1cmd } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = clipmenucmd } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = clipmenucmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotfullcmd } },
 	{ MODKEY|Mod1Mask,              XK_s,      spawn,          {.v = screenshotpartcmd } },
 /*	{ Mod1Mask,                     XK_a,      spawn,          {.v = switchkeybar} },
 	{ Mod1Mask,                     XK_Return, spawn,          {.v = switchkeyben} }, */
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = volumetogglecmd } },
 	{ MODKEY|ControlMask,           XK_u,      spawn,          {.v = volumeupcmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = browsercmd } },
