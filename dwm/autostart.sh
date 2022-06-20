@@ -4,3 +4,4 @@ clipmenud &
 dwmblocks &
 flameshot &
 unclutter -grab &
+picom &
