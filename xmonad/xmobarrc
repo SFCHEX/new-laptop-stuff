@@ -15,6 +15,8 @@ Config {
 -- the height of xmobar is controlled by the font you use.
 
 font = "xft:Jetbrains Mono:pixelsize=14:antialias=true:hinting=true",
+additionalFonts = [ "xft:Amiri Typewriter:pixelsize=14:antialias=true:hinting=true"]
+
 borderColor = "#323845",
 bgColor = "#323845",
 fgColor = "#d8dee9",
@@ -51,7 +53,7 @@ commands = [
 
 	-- Date formatting
 	--Run Date "%k:%M:%S" "date" 10,
-	Run DateZone "%a %d %b %Y - %H:%M:%S" "fr_FR.UTF-8" "UTC" "date" 10,
+	Run Date "%a %d %b %Y - %H:%M:%S" "date" 10,
 
 	-- Battery information. This is likely to require some customization
 	-- based upon your specific hardware. Or, for a desktop you may want
@@ -62,8 +64,8 @@ commands = [
 	--"-c", "charge_full",
 	"-O", "AC",
 	"-o", "Bat",
-	"-h", "green",
-	"-l", "red"
+	"-h", "#a3be8c",
+	"-l", "#bf616a"
 	] 10,
 	-- To get volume information, we run a custom bash script.
 	-- This is because the built-in volume support in xmobar is disabled
@@ -98,7 +100,7 @@ alignSep = "}{",
 -- Overall template for the layout of the xmobar contents. Note that
 -- space is significant and can be used to add padding.
 -- template = "%StdinReader% }{ [%battery%] [%cpu%] [%memory%] [Vol: %myvolume%] [%date%] "
-template ="%StdinReader% }{ [Bat: %battery%] [Brightness: %brightness%] [%cpu%] [%memory%] [Vol: %myvolume%] [%date%] "
+template ="%StdinReader% }{[Vol: %myvolume%] [Brightness: %brightness%] [%battery%] [%cpu%] [%memory%] [%date%] "
 }
 
 --Config { font = "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-iso10646-1"

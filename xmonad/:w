@@ -20,7 +20,6 @@ import XMonad.Hooks.EwmhDesktops -- Firefox fullscreen
 import XMonad.Layout.ThreeColumns
 import XMonad.Actions.NoBorders
 import XMonad.Actions.WindowGo
-import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Actions.GridSelect
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
@@ -238,22 +237,8 @@ myLayout= avoidStruts ( tiled ||| Mirror tiled ||| Full)
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"         --> doCenterFloat
-    , className =? "confirm"         --> doCenterFloat
-    , className =? "file_progress"   --> doCenterFloat
-    , className =? "dialog"          --> doCenterFloat
-    , className =? "download"        --> doCenterFloat
-    , className =? "error"           --> doCenterFloat
-    , className =? "Gimp"            --> doCenterFloat
-    , className =? "notification"    --> doCenterFloat
-    , className =? "pinentry-gtk-2"  --> doCenterFloat
-    , className =? "splash"          --> doCenterFloat
-    , className =? "Pavucontrol"     --> doCenterFloat
-    , className =? "Lxappearance"    --> doCenterFloat
-    , className =? "toolbar"         --> doCenterFloat
-    , className =? "Yad"             --> doCenterFloat
-    , isFullscreen --> doFullFloat
-    ]
+    [ className =? "MPlayer"        --> doFloat
+    , resource  =? "kdesktop"       --> doIgnore ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -300,7 +285,7 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe "xmobar /home/saif/.xmonad/xmobarrc"
-  xmonad $ ewmh $ docks defaults{
+  xmonad $ ewmh$ docks defaults{
       logHook = dynamicLogWithPP $ xmobarPP
                         { ppCurrent = xmobarColor "#a3be8c" "", --tag color,
                           ppOutput = hPutStrLn xmproc,
@@ -333,7 +318,7 @@ defaults = def {
       -- hooks, layouts
         layoutHook         =spacingRaw False (Border 3 3 3 3) True (Border 3 3 3 3) True $ myLayout,
         manageHook         = myManageHook,
-        handleEventHook    = myEventHook <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook,
+        handleEventHook    = myEventHook,
        startupHook        = myStartupHook
     }
 
