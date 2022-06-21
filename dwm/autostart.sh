@@ -1,5 +1,5 @@
 redshift &
-feh --bg-scale ~/.dwm/newwal.png &
+feh --bg-scale ~/.dwm/newwal2.png &
 clipmenud &
 dwmblocks &
 flameshot &
