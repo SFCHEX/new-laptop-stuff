@@ -1,5 +1,5 @@
 export PATH="$HOME/.local/bin:$PATH"
-source .zsh/zsh-syntax-highlighting.zsh
+source /home/saif/.zsh/zsh-syntax-highlighting.zsh
 export VISUAL=nvim;
 export EDITOR=nvim;
 autoload -U colors && colors
@@ -10,7 +10,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=fg:#e5e9f0,bg:#2E3440,hl:#81a1c1
     --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
     --color=info:#eacb8a,prompt:#bf6069,pointer:#A3BE8C
-   --color=marker:#a3be8b,spinner:#b48dac,header:#a3b8b'
+   --color=marker:#a3be8b,spinner:#b48dac,header:#A3BE8C'
 
 export PATH=~/bin:.:$PATH
 bindkey -M vicmd '^X^m' accept-line-swallow # if you're using vim bindings in zsh
@@ -25,8 +25,9 @@ zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-compl
 fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit && compinit
 zmodload -i zsh/complist
-source .zsh/zsh-syntax-highlighting.zsh
+source /home/saif/.zsh/zsh-syntax-highlighting.zsh
 zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=1000000000
@@ -43,7 +44,13 @@ setopt HIST_IGNORE_ALL_DUPS
 autoload -Uz history-beginning-search-menu
 zle -N history-beginning-search-menu
 bindkey '^X^X' history-beginning-search-menu
-source .zsh/zsh-history-substring-search.zsh
+source /home/saif/.zsh/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+autoload -U compinit; compinit
+alias ca="rfkill unblock all && bluetoothctl connect 80:9F:5E:37:E0:02"
+alias da="bluetoothctl disconnect 80:9F:5E:37:E0:02"
+alias torrent="transmission-daemon && transmission-remote -a"
+alias torrstat="transmission-remote -l"
+zstyle ':completion:*' group-name ''
 neofetch
